@@ -1,0 +1,57 @@
+2026-06-07T00:01:14.332Z [INFO]  FIREWALL       src=203.0.113.42:54312  dst=10.0.1.5:443   proto=TCP  action=ALLOW   bytes=1842   session_id=a3f9c1
+2026-06-07T00:03:27.891Z [INFO]  AUTH           user=svc_backup          host=10.0.1.22       event=LOGIN_SUCCESS  method=CERTIFICATE  ip=10.0.1.22
+2026-06-07T00:04:01.005Z [WARN]  AUTH           user=admin               host=10.0.1.1        event=LOGIN_FAILED   method=PASSWORD     ip=198.51.100.77  reason="Invalid credentials"
+2026-06-07T00:04:03.210Z [WARN]  AUTH           user=admin               host=10.0.1.1        event=LOGIN_FAILED   method=PASSWORD     ip=198.51.100.77  reason="Invalid credentials"
+2026-06-07T00:04:05.614Z [WARN]  AUTH           user=admin               host=10.0.1.1        event=LOGIN_FAILED   method=PASSWORD     ip=198.51.100.77  reason="Invalid credentials"
+2026-06-07T00:04:07.003Z [CRIT]  AUTH           user=admin               host=10.0.1.1        event=ACCOUNT_LOCKED ip=198.51.100.77    reason="Brute-force threshold exceeded (5 attempts)"
+2026-06-07T00:04:07.012Z [CRIT]  IDS            rule_id=BRUTE-SSH-001    src=198.51.100.77    dst=10.0.1.1:22      alert="SSH brute-force detected"  severity=HIGH  count=5  window=30s
+2026-06-07T00:05:55.441Z [INFO]  FIREWALL       src=10.0.1.33:49201      dst=8.8.8.8:53       proto=UDP  action=ALLOW   bytes=64    session_id=b7d2e4
+2026-06-07T00:08:12.773Z [INFO]  PROXY          user=m.dupont            src=10.0.2.14        dst=https://github.com  action=ALLOW   category=Development  bytes=98432
+2026-06-07T00:11:39.220Z [WARN]  PROXY          user=unknown             src=10.0.2.88        dst=http://185.220.101.34  action=BLOCK  category=TOR_EXIT_NODE  threat_score=94
+2026-06-07T00:11:39.231Z [WARN]  IDS            rule_id=TOR-EGRESS-002   src=10.0.2.88        dst=185.220.101.34:80  alert="Outbound connection to known Tor exit node"  severity=MEDIUM
+2026-06-07T00:14:02.009Z [INFO]  FIREWALL       src=10.0.3.5:51000       dst=10.0.1.5:3306    proto=TCP  action=ALLOW   bytes=512    session_id=c1a8f3
+2026-06-07T00:17:45.887Z [INFO]  AUTH           user=j.martin            host=WS-MARTIN-01    event=LOGIN_SUCCESS  method=MFA          ip=10.0.2.45
+2026-06-07T00:21:00.001Z [INFO]  SIEM           event=SCHEDULED_SCAN     scanner=Tenable.io   target=10.0.0.0/16   status=STARTED
+2026-06-07T00:23:18.554Z [WARN]  DLP            user=j.martin            src=10.0.2.45        action=BLOCK  rule="PII export blocked"  file="clients_export_Q1.xlsx"  dst=gmail.com
+2026-06-07T00:23:18.561Z [WARN]  SIEM           correlation_id=DLP-ALERT-0047  user=j.martin  event="Sensitive data exfiltration attempt via webmail"  severity=HIGH
+2026-06-07T00:26:30.102Z [INFO]  FIREWALL       src=203.0.113.10:61234   dst=10.0.1.80:443    proto=TCP  action=ALLOW   bytes=3201   session_id=d4b5e9
+2026-06-07T00:29:55.670Z [ERR]   ENDPOINT       host=WS-COMPTA-03        user=f.bernard       event=MALWARE_DETECTED  engine=CrowdStrike  threat="Trojan.GenericKD.47832"  file="C:\Users\f.bernard\Downloads\facture_avril.exe"  action=QUARANTINED
+2026-06-07T00:29:55.698Z [CRIT]  SIEM           correlation_id=EP-CRIT-0021  host=WS-COMPTA-03  user=f.bernard  event="Malware quarantined on endpoint"  severity=CRITICAL  ioc_hash="e3b0c44298fc1c149afb4c8996fb92427ae41e4649b934ca495991b7852b855"
+2026-06-07T00:31:07.334Z [INFO]  EDR            host=WS-COMPTA-03        action=PROCESS_KILL  pid=4421  process="facture_avril.exe"  parent="explorer.exe"
+2026-06-07T00:31:07.401Z [INFO]  EDR            host=WS-COMPTA-03        action=NETWORK_BLOCKED  pid=4421  dst=91.134.188.129:4444  reason="C2 beacon pattern detected"
+2026-06-07T00:33:45.112Z [INFO]  FIREWALL       src=10.0.1.22:55000      dst=10.0.1.100:445   proto=TCP  action=ALLOW   bytes=2048   session_id=e6c7f1
+2026-06-07T00:37:22.889Z [WARN]  AUTH           user=root                host=srv-db-01       event=LOGIN_FAILED   method=SSH_KEY      ip=185.234.218.5  reason="Unknown public key"
+2026-06-07T00:37:23.001Z [WARN]  IDS            rule_id=SSH-SCAN-003     src=185.234.218.5    dst=10.0.1.10:22    alert="SSH key enumeration attempt"  severity=MEDIUM
+2026-06-07T00:40:00.000Z [INFO]  BACKUP         host=srv-backup-01       event=BACKUP_STARTED  target=10.0.1.5     job_id=BKP-20260607-001
+2026-06-07T00:44:51.217Z [INFO]  FIREWALL       src=10.0.2.99:48200      dst=172.217.20.46:443 proto=TCP  action=ALLOW  bytes=12080  session_id=f2d9a3
+2026-06-07T00:48:09.663Z [WARN]  WAF            src=89.187.190.12        dst=10.0.1.80        method=GET  uri="/admin/../../../../etc/passwd"  rule="PATH_TRAVERSAL"  action=BLOCK  status=403
+2026-06-07T00:48:09.671Z [WARN]  IDS            rule_id=WAF-LFI-007      src=89.187.190.12    dst=10.0.1.80:80    alert="Path traversal / LFI attempt on web server"  severity=HIGH
+2026-06-07T00:51:33.440Z [INFO]  VPN            user=t.rousseau          src=82.66.14.201      event=VPN_CONNECT    tunnel=SSL-VPN  assigned_ip=10.10.0.51
+2026-06-07T00:55:17.882Z [INFO]  AUTH           user=t.rousseau          host=SRV-FILES-01    event=LOGIN_SUCCESS  method=KERBEROS     ip=10.10.0.51
+2026-06-07T00:58:44.109Z [WARN]  PROXY          user=t.rousseau          src=10.10.0.51       dst=https://pastebin.com  action=WARN  category=SUSPICIOUS_UPLOAD  bytes=18200
+2026-06-07T01:02:05.774Z [INFO]  FIREWALL       src=10.0.1.5:443         dst=203.0.113.100:52010 proto=TCP action=ALLOW bytes=44021 session_id=g8e3c2
+2026-06-07T01:05:29.338Z [ERR]   AUTH           user=svc_api             host=api-gw-01       event=TOKEN_EXPIRED  method=JWT          ip=10.0.3.7    token_id="eyJhbGci...7fQk"
+2026-06-07T01:08:55.001Z [INFO]  IDS            rule_id=PORT-SCAN-010    src=10.0.4.15        dst=10.0.0.0/8      alert="Internal port scan detected"  severity=MEDIUM  ports_scanned=342  window=60s
+2026-06-07T01:11:00.220Z [WARN]  FIREWALL       src=10.0.4.15            dst=10.0.1.5:22      proto=TCP  action=BLOCK  reason="Blocked by IDS correlation rule PORT-SCAN-010"
+2026-06-07T01:15:43.667Z [INFO]  SIEM           event=THREAT_INTEL_UPDATE  feed=MISP  ioc_count=1423  added=87  removed=14  status=SUCCESS
+2026-06-07T01:20:11.992Z [INFO]  BACKUP         host=srv-backup-01       event=BACKUP_COMPLETED  job_id=BKP-20260607-001  size_gb=142.7  duration_s=4811  status=OK
+2026-06-07T01:24:37.558Z [WARN]  WAF            src=103.235.46.8         dst=10.0.1.80        method=POST uri="/api/login"  rule="SQL_INJECTION"  payload="' OR 1=1--"  action=BLOCK  status=403
+2026-06-07T01:24:37.574Z [CRIT]  IDS            rule_id=WAF-SQLI-012     src=103.235.46.8     dst=10.0.1.80:443   alert="SQL injection attempt on login endpoint"  severity=CRITICAL
+2026-06-07T01:28:02.114Z [INFO]  FIREWALL       src=198.51.100.200:50011 dst=10.0.1.25:443    proto=TCP  action=ALLOW  bytes=9912  session_id=h5f4d7
+2026-06-07T01:33:19.445Z [INFO]  AUTH           user=c.lefevre           host=WS-LEFEVRE-01   event=LOGIN_SUCCESS  method=SMARTCARD    ip=10.0.2.61
+2026-06-07T01:38:50.003Z [WARN]  DLP            user=c.lefevre           src=10.0.2.61        action=WARN  rule="Large archive transfer"  file="backup_projet_X.zip"  dst=10.0.1.100:445  size_mb=512
+2026-06-07T01:42:07.889Z [INFO]  PROXY          user=c.lefevre           src=10.0.2.61        dst=https://wetransfer.com  action=BLOCK  category=FILE_SHARING
+2026-06-07T01:45:33.221Z [INFO]  FIREWALL       src=10.0.2.33:47890      dst=10.0.1.5:8443    proto=TCP  action=ALLOW  bytes=660   session_id=i9g6e8
+2026-06-07T01:49:17.774Z [ERR]   ENDPOINT       host=SRV-WEB-01          event=INTEGRITY_VIOLATION  engine=Tripwire  file="/var/www/html/index.php"  change="MODIFIED"  expected_hash="d41d8cd9..." actual_hash="b026324c..."
+2026-06-07T01:49:17.790Z [CRIT]  SIEM           correlation_id=FIM-CRIT-0008  host=SRV-WEB-01  event="Web server file integrity violation — possible webshell"  severity=CRITICAL
+2026-06-07T01:52:44.002Z [INFO]  EDR            host=SRV-WEB-01          action=PROCESS_AUDIT  pid=8831  process="php"  cmdline="php -r \"system($_GET['cmd']);\""  status=FLAGGED
+2026-06-07T01:55:00.440Z [INFO]  SIEM           event=INCIDENT_CREATED   id=INC-2026-0189     severity=CRITICAL  title="Suspected webshell on SRV-WEB-01"  assigned_to=SOC-L2
+2026-06-07T01:58:29.113Z [INFO]  FIREWALL       src=SRV-WEB-01           dst=0.0.0.0/0        proto=ANY  action=ISOLATE  reason="Incident INC-2026-0189 — host isolation"
+2026-06-07T02:01:55.667Z [INFO]  AUTH           user=soc.analyst2        host=SIEM-CONSOLE    event=LOGIN_SUCCESS  method=MFA          ip=10.0.5.12
+2026-06-07T02:05:38.334Z [INFO]  SIEM           correlation_id=INC-2026-0189  event=INVESTIGATION_STARTED  analyst=soc.analyst2  host=SRV-WEB-01
+2026-06-07T02:09:12.881Z [WARN]  IDS            rule_id=BEACONING-015    src=10.0.2.88        dst=45.33.32.156:443  alert="Periodic beaconing pattern detected (C2 candidate)"  interval_s=60  severity=HIGH
+2026-06-07T02:13:44.005Z [INFO]  FIREWALL       src=10.0.2.88            dst=45.33.32.156:443 proto=TCP  action=BLOCK  reason="Threat intel match — known C2 IP"
+2026-06-07T02:17:21.559Z [INFO]  SIEM           event=IOC_ADDED          type=IP              value=45.33.32.156   source=SOC-L2  incident=INC-2026-0189
+2026-06-07T02:21:08.774Z [INFO]  EDR            host=WS-COMPTA-03        action=REMEDIATION_COMPLETE  threat="Trojan.GenericKD.47832"  files_removed=3  registry_keys_cleaned=7
+2026-06-07T02:25:33.112Z [INFO]  AUTH           user=svc_backup          host=10.0.1.22       event=LOGOUT         method=CERTIFICATE  ip=10.0.1.22  session_duration_s=8651
+2026-06-07T02:29:47.220Z [INFO]  SIEM           event=REPORT_GENERATED   id=RPT-2026-0607-02  type=NIGHTLY_SUMMARY  alerts_total=31  critical=4  high=8  medium=11  low=8  incidents_opened=1
